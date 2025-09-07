@@ -1,0 +1,376 @@
+/* Estilos base para o fundo 2D */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    /* Adicionado transição para suavizar as mudanças de cor e opacidade */
+    transition: background-color 2s ease, background 2s ease, opacity 2s ease;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: pan-x pan-y;
+}
+
+.scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Céu e nuvens */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    /* A cor inicial será manipulada via JS para a transição */
+    background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.8;
+    animation: float 20s infinite linear;
+    transition: opacity 2s ease;
+}
+
+.cloud:before, .cloud:after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 100px;
+    height: 40px;
+    top: 15%;
+    left: -150px;
+    animation-duration: 25s;
+}
+.cloud1:before { width: 50px; height: 50px; top: -25px; left: 10px; }
+.cloud1:after { width: 60px; height: 40px; top: -15px; right: 10px; }
+
+.cloud2 {
+    width: 80px;
+    height: 30px;
+    top: 25%;
+    left: -120px;
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+.cloud2:before { width: 40px; height: 40px; top: -20px; left: 15px; }
+.cloud2:after { width: 50px; height: 30px; top: -10px; right: 15px; }
+
+.cloud3 {
+    width: 120px;
+    height: 50px;
+    top: 10%;
+    left: -180px;
+    animation-duration: 35s;
+    animation-delay: -20s;
+}
+.cloud3:before { width: 60px; height: 60px; top: -30px; left: 20px; }
+.cloud3:after { width: 70px; height: 50px; top: -20px; right: 20px; }
+
+@keyframes float {
+    0% { transform: translateX(-200px); }
+    100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+/* Colina */
+.hill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: radial-gradient(ellipse at center bottom, #4CAF50 0%, #66BB6A 30%, #81C784 60%, #A5D6A7 100%);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    transform: scaleX(1.5);
+    z-index: 1;
+    transition: background 2s ease;
+}
+
+/* Campo de capim */
+.grass-field {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.grass {
+    position: absolute;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to top, #2E7D32, #4CAF50, #66BB6A);
+    border-radius: 2px 2px 0 0;
+    transform-origin: bottom center;
+    animation: sway 3s ease-in-out infinite;
+    transition: background-color 2s ease;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg) scaleY(1); }
+    25% { transform: rotate(2deg) scaleY(1.05); }
+    50% { transform: rotate(0deg) scaleY(1.1); }
+    75% { transform: rotate(-2deg) scaleY(1.05); }
+}
+
+/* Flores */
+.flower {
+    position: absolute;
+    bottom: 20px;
+    transform-origin: bottom center;
+    animation: flower-sway 4s ease-in-out infinite;
+    transition: opacity 2s ease;
+}
+
+.flower-stem {
+    width: 2px;
+    height: 30px;
+    background: #2E7D32;
+    margin: 0 auto;
+    transition: background-color 2s ease;
+}
+
+.flower-petals {
+    width: 12px;
+    height: 12px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 auto;
+    animation: bloom 6s ease-in-out infinite;
+    transition: background-color 2s ease;
+}
+
+.flower-petals:before, .flower-petals:after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #FF6B9D;
+    border-radius: 50%;
+    transition: background-color 2s ease;
+}
+
+.flower-petals:before { top: -6px; left: 0; }
+.flower-petals:after { top: 0; left: -6px; }
+
+.flower-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    transition: background-color 2s ease;
+}
+
+.flower.yellow .flower-petals,
+.flower.yellow .flower-petals:before,
+.flower.yellow .flower-petals:after { background: #FFD700; }
+
+.flower.purple .flower-petals,
+.flower.purple .flower-petals:before,
+.flower.purple .flower-petals:after { background: #9C27B0; }
+
+.flower.white .flower-petals,
+.flower.white .flower-petals:before,
+.flower.white .flower-petals:after { background: #FFFFFF; }
+
+@keyframes flower-sway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+@keyframes bloom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Borboletas */
+.butterfly {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    animation: fly 15s infinite linear;
+    z-index: 3;
+    transition: opacity 2s ease;
+}
+
+.butterfly-body {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: #8D6E63;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1px;
+    transition: background-color 2s ease;
+}
+
+.butterfly-wing {
+    position: absolute;
+    width: 8px;
+    height: 10px;
+    background: #FF9800;
+    border-radius: 50% 10% 50% 10%;
+    animation: flutter 0.3s infinite alternate;
+    transition: background-color 2s ease;
+}
+
+.butterfly-wing.left {
+    left: 2px;
+    top: 2px;
+    transform-origin: right center;
+}
+
+.butterfly-wing.right {
+    right: 2px;
+    top: 2px;
+    transform-origin: left center;
+    transform: scaleX(-1);
+}
+
+@keyframes fly {
+    0% { transform: translateX(-50px) translateY(0px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 50px)) translateY(-100px); opacity: 0; }
+}
+
+@keyframes flutter {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(45deg); }
+}
+
+/* Sol e Lua */
+.sun {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #F2F5DF 0%, #F5F7DF 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+    animation: sun-glow 4s ease-in-out infinite alternate;
+    z-index: 0;
+    transition: all 2s ease;
+}
+
+/* NOVO: Estilos para a lua */
+.moon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #E0E0E0 0%, #BDBDBD 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    animation: moon-glow 4s ease-in-out infinite alternate;
+    z-index: 0;
+    opacity: 0; /* Começa invisível */
+    transition: all 2s ease;
+}
+
+@keyframes sun-glow {
+    0% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+    100% { box-shadow: 0 0 80px rgba(255, 215, 0, 0.8); }
+}
+
+@keyframes moon-glow {
+    0% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+    100% { box-shadow: 0 0 50px rgba(255, 255, 255, 0.7); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sun { width: 60px; height: 60px; }
+    .moon { width: 45px; height: 45px; }
+    .cloud1, .cloud2, .cloud3 { transform: scale(0.8); }
+}
+
+/* CSS do lobby 3D */
+#gameContainer {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+#startButton {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    padding: 15px 40px;
+    font-size: 30px;
+    background: linear-gradient(45deg, 
+#F2D61F, #E6A117);
+    color: 
+#000000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    font-family: 'Sans-Serif', cursive;
+    z-index: 11;
+}
+#startButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+#startButton:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* Novos estilos para os botões da lateral esquerda */
+.left-buttons-container {
+    position: absolute;
+    top: 25%;
+    left: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 11;
+}
+
+.left-buttons-container .side-button {
+    padding: 3px 15px;
+    font-size: 18px;
+    background-color: #7BCFE8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+.left-buttons-container .side-button:hover {
+    background-color: #3DEB99;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
