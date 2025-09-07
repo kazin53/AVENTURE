@@ -565,6 +565,7 @@ if (location.pathname.endsWith("index.html") || location.pathname === "/") {
         }
 
         lastBackPress = now;
+        
         // Empurra de volta o estado para continuar no lobby
         history.pushState(null, null, location.href);
     });
@@ -572,3 +573,22 @@ if (location.pathname.endsWith("index.html") || location.pathname === "/") {
     // Inicialmente empurra o estado para travar o histórico
     history.pushState(null, null, location.href);
 }
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  function entrarFullscreen() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  }
+
+  const btnStart = document.getElementById("btnStart");
+  if (btnStart) {
+    btnStart.addEventListener("click", entrarFullscreen);
+  }
+});
