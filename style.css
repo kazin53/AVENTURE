@@ -12,14 +12,30 @@ body {
     overflow: hidden;
     height: 100vh;
     touch-action: pan-x pan-y;
+    background-color: black;
 }
 
+/* NOVO: Estilo para forçar a rotação visual */
+#game-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Inverte largura e altura para simular o modo paisagem */
+    width: 100vh;
+    height: 100vw;
+    /* Gira o contêiner 90 graus no sentido horário */
+    transform: translate(-50%, -50%) rotate(90deg);
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Os estilos a seguir foram ajustados para se adaptarem à nova rotação */
 .scene {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     z-index: -1;
 }
@@ -30,8 +46,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70%;
-    /* A cor inicial será manipulada via JS para a transição */
+    /* Altura ajustada para o modo paisagem */
+    height: 50%;
     background: linear-gradient(to bottom, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
 }
 
@@ -94,8 +110,10 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 60%;
+    /* Altura ajustada para o modo paisagem */
+    height: 100%;
     background: radial-gradient(ellipse at center bottom, #4CAF50 0%, #66BB6A 30%, #81C784 60%, #A5D6A7 100%);
+    /* Borda para o modo paisagem */
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
     transform: scaleX(1.5);
     z-index: 1;
@@ -108,7 +126,8 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 40%;
+    /* Altura ajustada para o modo paisagem */
+    height: 100%;
     overflow: hidden;
     z-index: 2;
 }
@@ -277,7 +296,7 @@ body {
     transition: all 2s ease;
 }
 
-/* NOVO: Estilos para a lua */
+/* Estilos para a lua */
 .moon {
     position: absolute;
     width: 60px;
@@ -310,23 +329,23 @@ body {
 
 /* CSS do lobby 3D */
 #gameContainer {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
 }
+
 #startButton {
     position: absolute;
-    bottom: 30px;
-    right: 20px;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
     padding: 15px 40px;
     font-size: 30px;
-    background: linear-gradient(45deg, 
-#F2D61F, #E6A117);
-    color: 
-#000000;
+    background: linear-gradient(45deg, #F2D61F, #E6A117);
+    color: #000000;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -336,18 +355,18 @@ body {
     z-index: 11;
 }
 #startButton:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) translateX(50%);
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 #startButton:active {
-    transform: translateY(0);
+    transform: translateY(0) translateX(50%);
     box-shadow: 0 3px 10px rgba(0,0,0,0.3);
 }
 
 /* Novos estilos para os botões da lateral esquerda */
 .left-buttons-container {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 20px;
     transform: translateY(-50%);
     display: flex;

@@ -108,7 +108,7 @@ function updateScene(progress) {
 function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 2, 5);
+    camera.position.set(0, 2, 8); // Ajuste do Z para uma visão mais ampla
     camera.lookAt(0, 1.2, 0);
 
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -117,7 +117,7 @@ function init() {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     document.getElementById('gameContainer').appendChild(renderer.domElement);
 
-    // NOVO: As luzes agora são variáveis globais para serem manipuladas pela transição
+    // As luzes agora são variáveis globais para serem manipuladas pela transição
     ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
     
@@ -166,16 +166,22 @@ function init() {
     animate();
 }
 
-function handleClick() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
+// NOVO: Função para solicitar tela cheia de forma robusta
+function requestFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
     }
+}
+
+// NOVO: Ação do botão "Iniciar" agora também ativa a tela cheia
+function handleClick() {
+    requestFullscreen(document.documentElement); // Tenta colocar o documento inteiro em tela cheia
     window.location.href = 'car.html';
 }
 
@@ -565,7 +571,6 @@ if (location.pathname.endsWith("index.html") || location.pathname === "/") {
         }
 
         lastBackPress = now;
-        
         // Empurra de volta o estado para continuar no lobby
         history.pushState(null, null, location.href);
     });
@@ -573,22 +578,3 @@ if (location.pathname.endsWith("index.html") || location.pathname === "/") {
     // Inicialmente empurra o estado para travar o histórico
     history.pushState(null, null, location.href);
 }
-
-
-window.addEventListener("DOMContentLoaded", () => {
-  function entrarFullscreen() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    }
-  }
-
-  const btnStart = document.getElementById("btnStart");
-  if (btnStart) {
-    btnStart.addEventListener("click", entrarFullscreen);
-  }
-});
