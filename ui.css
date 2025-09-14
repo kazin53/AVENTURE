@@ -277,3 +277,17 @@ body {
     50% { opacity: 1; transform: scale(1.2); }
     100% { opacity: 0; transform: scale(1); }
 }
+
+#tapPrompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999;
+}
