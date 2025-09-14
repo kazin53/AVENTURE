@@ -1470,3 +1470,29 @@ window.addEventListener("popstate", function (event) {
 
 // Empurra estado inicial para ativar o 'popstate'
 history.pushState(null, null, location.href);
+
+// ... (seu código existente acima) ...
+
+// Ativar fullscreen no primeiro toque em qualquer lugar da tela do lobby
+function enableFullscreenOnFirstTap() {
+    const tapPrompt = document.getElementById("tapPrompt");
+
+    function activateFullscreen() {
+        requestFullscreen(document.documentElement);
+
+        // Esconde o overlay de instrução
+        if (tapPrompt) {
+            tapPrompt.style.display = "none";
+        }
+
+        // Remove os listeners (só precisa 1 toque)
+        document.removeEventListener("click", activateFullscreen);
+        document.removeEventListener("touchstart", activateFullscreen);
+    }
+
+    document.addEventListener("click", activateFullscreen);
+    document.addEventListener("touchstart", activateFullscreen);
+}
+
+window.addEventListener("DOMContentLoaded", enableFullscreenOnFirstTap);
+
