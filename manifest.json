@@ -4,7 +4,7 @@
   "short_name": "World wow",
   "lang": "pt-BR",
   "description": "Um jogo progressivo em HTML5 para jogar em tela cheia.",
-  "start_url": "/",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
   "display_override": [
