@@ -2,50 +2,22 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Lobby 3D - Personagem</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World wow</title>
+    
     <link rel="stylesheet" href="style.css">
+    
     <link rel="manifest" href="/manifest.json">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="World wow">
+    
+    <link rel="apple-touch-icon" href="/icone-192.png">
+
+    <meta name="theme-color" content="#333aa6">
 </head>
 <body>
-    <!-- Overlay para instrução de fullscreen -->
-    <div id="tapPrompt">
-        <div class="prompt-content">
-            <p>Toque na tela para ativar tela cheia</p>
-            <div class="finger-icon"></div>
-        </div>
-    </div>
-
-    <div class="scene">
-        <div class="sky"></div>
-        <div class="sun"></div>
-        <div class="moon"></div>
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="hill"></div>
-        <div class="grass-field" id="grassField"></div>
-
-        <div class="butterfly" style="top: 40%; animation-delay: 0s;">
-            <div class="butterfly-body"></div>
-            <div class="butterfly-wing left"></div>
-            <div class="butterfly-wing right"></div>
-        </div>
-        
-        <div class="butterfly" style="top: 50%; animation-delay: -8s;">
-            <div class="butterfly-body"></div>
-            <div class="butterfly-wing left" style="background: #E91E63;"></div>
-            <div class="butterfly-wing right" style="background: #E91E63;"></div>
-        </div>
-    </div>
-    
-    <div class="left-buttons-container">
-        <button class="side-button">Botão 1</button>
-        <button class="side-button">Botão 2</button>
-        <button class="side-button">Botão 3</button>
-        <button class="side-button">Botão 4</button>
-    </div>
-
     <div id="game-wrapper">
         <div id="gameContainer"></div>
         <button id="startButton">Iniciar</button>
@@ -54,45 +26,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- Registro do Service Worker -->
+    <button id="install-btn" style="display: none;">📲 Instalar Jogo</button>
+
     <script>
+        // Registra o Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register("/service-worker.js")
-                .then(() => console.log("Service Worker registrado com sucesso."))
-                .catch(err => console.error("Erro ao registrar Service Worker:", err));
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => {
+                        console.log('Service Worker registrado com sucesso. Scope é:', reg.scope);
+                    })
+                    .catch(err => {
+                        console.log('Falha no registro do Service Worker:', err);
+                    });
+            });
         }
 
-        // Botão opcional para instalar o PWA
         let deferredPrompt;
+        const installButton = document.getElementById('install-btn');
+
         window.addEventListener('beforeinstallprompt', (e) => {
+            // Previne a exibição automática da janela de instalação
             e.preventDefault();
+            // Salva o evento para uso posterior
             deferredPrompt = e;
+            // Mostra o botão personalizado de instalação
+            installButton.style.display = 'block';
+        });
 
-            const btn = document.createElement('button');
-            btn.id = "install-btn";
-            btn.textContent = "📲 Instalar Jogo";
-            btn.style.position = 'fixed';
-            btn.style.bottom = '20px';
-            btn.style.right = '20px';
-            btn.style.padding = '10px 20px';
-            btn.style.backgroundColor = '#333aa6';
-            btn.style.color = '#fff';
-            btn.style.border = 'none';
-            btn.style.borderRadius = '5px';
-            document.body.appendChild(btn);
-
-            btn.addEventListener('click', () => {
-                btn.remove();
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuário aceitou instalar');
-                    } else {
-                        console.log('Usuário recusou instalar');
-                    }
-                    deferredPrompt = null;
-                });
+        installButton.addEventListener('click', () => {
+            // Esconde o botão e dispara o prompt de instalação
+            installButton.style.display = 'none';
+            deferredPrompt.prompt();
+            // Verifica o resultado da escolha do usuário
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuário aceitou a instalação do PWA.');
+                } else {
+                    console.log('Usuário recusou a instalação do PWA.');
+                }
+                deferredPrompt = null;
             });
+        });
+
+        // Evento que notifica quando o PWA foi instalado
+        window.addEventListener('appinstalled', (e) => {
+            console.log('PWA instalado com sucesso!');
         });
     </script>
 </body>
