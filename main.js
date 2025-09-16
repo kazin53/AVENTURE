@@ -1158,7 +1158,7 @@ function checkCollisions() {
     // Verificar colisão com árvores
     trees.forEach(tree => {
         // Raio de colisão do tronco da árvore
-        const treeRadius = 2.0 * tree.scale.x; 
+        const treeRadius = 1.0 * tree.scale.x; 
         const distance = playerPos.distanceTo(tree.position);
 
         if (distance < playerRadius + treeRadius) {
@@ -1172,14 +1172,14 @@ function checkCollisions() {
             playerPos.add(direction.multiplyScalar(overlap));
             
             // Zera a velocidade para impedir o jogador de "grudar" ou "escorregar"
-            playerVelocity.x = 0.5;
-            playerVelocity.z = 0.5;
+            playerVelocity.x = 0.1;
+            playerVelocity.z = 0.1;
         }
     });
 
     // Verificar colisão com zumbis
     zombies.forEach(zombie => {
-        const zombieRadius = 1.5 * zombie.scale.x; // Raio do zumbi
+        const zombieRadius = 0.5 * zombie.scale.x; // Raio do zumbi
         const distance = playerPos.distanceTo(zombie.position);
 
         if (distance < playerRadius + zombieRadius) {
@@ -1193,7 +1193,7 @@ function checkCollisions() {
 
     // Verificar colisão com galinhas
     chickens.forEach(chicken => {
-        const chickenRadius = 1.0 * chicken.scale.x; // Raio da galinha
+        const chickenRadius = 0.6 * chicken.scale.x; // Raio da galinha
         const distance = playerPos.distanceTo(chicken.position);
 
         if (distance < playerRadius + chickenRadius) {
