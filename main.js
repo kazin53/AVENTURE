@@ -1172,8 +1172,8 @@ function checkCollisions() {
             playerPos.add(direction.multiplyScalar(overlap));
             
             // Zera a velocidade para impedir o jogador de "grudar" ou "escorregar"
-            playerVelocity.x = 0;
-            playerVelocity.z = 0;
+            playerVelocity.x = 0.5;
+            playerVelocity.z = 0.5;
         }
     });
 
