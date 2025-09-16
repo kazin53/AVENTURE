@@ -20,17 +20,17 @@
   "icons": [
     {
       "src": "/icone.png",
-      "sizes": "1600x896",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
       "src": "/icone.png",
-      "sizes": "1600x896",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
       "src": "/icone.png",
-      "sizes": "1600x896",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
