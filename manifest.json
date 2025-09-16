@@ -30,12 +30,12 @@
     },
     {
       "src": "/icone-720.png",
-      "sizes": "720x720",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icone-1022.png",
-      "sizes": "1022x1022",
+      "src": "/icone-1600.png",
+      "sizes": "1600x1600",
       "type": "image/png"
     }
   ]
