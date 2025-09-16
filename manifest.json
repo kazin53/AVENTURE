@@ -1,0 +1,37 @@
+{
+  "background_color": "#5b5870",
+  "dir": "ltr",
+  "display": "fullscreen",
+  "name": "World wow",
+  "orientation": "landscape",
+  "scope": "/",
+  "short_name": "World wow",
+  "start_url": "/index.html",
+  "theme_color": "#333aa6",
+  "id": "world-wow-game-id",
+  "lang": "pt",
+  "display_override": [
+    "fullscreen",
+    "browser",
+    "minimal-ui",
+    "standalone",
+    "window-controls-overlay"
+  ],
+  "icons": [
+    {
+      "src": "/icone.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icone.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icone.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
