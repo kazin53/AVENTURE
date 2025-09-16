@@ -4,14 +4,13 @@
   "short_name": "World wow",
   "lang": "pt-BR",
   "description": "Um jogo progressivo em HTML5 para jogar em tela cheia.",
-  "start_url": "/index.html",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "display_override": [
     "fullscreen",
     "standalone",
-    "minimal-ui",
-    "browser"
+    "minimal-ui"
   ],
   "orientation": "landscape",
   "background_color": "#5b5870",
@@ -28,14 +27,7 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/icone-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
   ],
-  "categories": ["games", "entertainment"],
-  "orientation_lock": "landscape"
+  "categories": ["games", "entertainment"]
 }
