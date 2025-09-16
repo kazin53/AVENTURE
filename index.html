@@ -60,38 +60,6 @@ if ("serviceWorker" in navigator) {
     .then(() => console.log("Service Worker registrado com sucesso."))
     .catch((err) => console.error("Erro ao registrar Service Worker:", err));
     <script>
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  const btn = document.createElement('button');
-  btn.id = "install-btn";
-  btn.textContent = "📲 Instalar Jogo";
-  btn.style.position = 'fixed';
-  btn.style.bottom = '20px';
-  btn.style.right = '20px';
-  btn.style.padding = '10px 20px';
-  btn.style.backgroundColor = '#333aa6';
-  btn.style.color = '#fff';
-  btn.style.border = 'none';
-  btn.style.borderRadius = '5px';
-  document.body.appendChild(btn);
-
-  btn.addEventListener('click', () => {
-    btn.remove();
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('Usuário aceitou instalar');
-      } else {
-        console.log('Usuário recusou instalar');
-      }
-      deferredPrompt = null;
-    });
-  });
-});
-</script>
 }
 </script>
 </body>
