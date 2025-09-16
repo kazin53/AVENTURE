@@ -19,23 +19,23 @@
   ],
   "icons": [
     {
-      "src": "/icone-284.png",
-      "sizes": "284x284",
+      "src": "/icone-95.png",
+      "sizes": "95x95",
       "type": "image/png"
     },
     {
-      "src": "/icone-512.png",
-      "sizes": "512x512",
+      "src": "/icone-95.png",
+      "sizes": "95x95",
       "type": "image/png"
     },
     {
-      "src": "/icone-720.png",
-      "sizes": "720x1600",
+      "src": "/icone-95.png",
+      "sizes": "95x95",
       "type": "image/png"
     },
     {
-      "src": "/icone-1600.png",
-      "sizes": "1600x1600",
+      "src": "/icone-95.png",
+      "sizes": "95x95",
       "type": "image/png"
     }
   ]
