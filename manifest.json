@@ -1,21 +1,18 @@
 {
   "background_color": "#5b5870",
   "dir": "ltr",
-  "display": "fullscreen",
-  "name": "World wow",
-  "orientation": "landscape",
-  "scope": "/",
-  "short_name": "World wow",
+  "display": "standalone",
+  "name": "World Wow",
+  "short_name": "World Wow",
   "start_url": "/index.html",
+  "scope": "/",
+  "orientation": "landscape",
   "theme_color": "#333aa6",
   "id": "world-wow-game-id",
   "lang": "pt",
   "display_override": [
-    "fullscreen",
-    "browser",
-    "minimal-ui",
     "standalone",
-    "window-controls-overlay"
+    "fullscreen"
   ],
   "icons": [
     {
